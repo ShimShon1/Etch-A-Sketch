@@ -8,8 +8,10 @@ const customBtn = document.querySelector(".custom")
 const blackBtn = document.querySelector(".black")
 const eraserBtn = document.querySelector(".eraser")
 const clearBtn = document.querySelector(".clear")
+const randomBtn = document.querySelector(".random")
 
-console.log(customBtn.value)
+const range = document.querySelector(".range")
+const rangeText = document.querySelector(".grid-size")
 
 let miceMode = "black"
 let cells = []
@@ -21,6 +23,12 @@ hoverEffect()
 
 
 //event listeners
+range.addEventListener("change", function(){
+    CreateCells(range.value)
+    rangeText.textContent = range.value + " X " + range.value
+})
+
+
 blackBtn.addEventListener("click", function(){
     miceMode = "black"
     hoverEffect()
@@ -45,6 +53,11 @@ customBtn.addEventListener("click", function(){
 })
 
 
+randomBtn.addEventListener("click", function(){
+    miceMode = "random"
+    hoverEffect()
+})
+
 
 
 
@@ -53,7 +66,6 @@ function hoverEffect(){
    for (let i = 0; i < cells.length; i++) {
     
     if (miceMode == "black"){
-
         cells[i].addEventListener("mouseover",function(){cells[i].style.backgroundColor="black"})
 
 
@@ -64,22 +76,19 @@ function hoverEffect(){
      }else if (miceMode == "custom"){
         cells[i].addEventListener("mouseover",function(){cells[i].style.backgroundColor=customBtn.value})
 
+     }else if (miceMode == "random"){
+        cells[i].addEventListener("mouseover",function(){cells[i].style.backgroundColor=`rgb(${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)})`})
+
      }
     
     } 
-
-
 }
 
 
 function CreateCells(size){
    
-    
     cellAmount = size * size;
  
-    console.log("grid height is - " + grid.clientHeight)
-    
-
     while (grid.firstChild) {
         grid.removeChild(grid.firstChild);
     }
@@ -97,19 +106,8 @@ function CreateCells(size){
 
         grid.append(cells[i])
 
-       
-
-        
-
     }
-
-
     grid.style["grid-template-columns"] = `repeat(${size}, 1fr)`
     grid.style["grid-auto-rows"] = `1fr`
-
-
-
-
-
 }
 
