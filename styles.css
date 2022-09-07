@@ -2,35 +2,59 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Roboto Condensed', sans-serif;
+    
+
 }
 
 body{
     height: 100%;
-    background-color: lightblue;
+    background-color: rgb(210, 237, 247);
 }
 
 
 main{
-    
-    width: 60%;
-    margin: 5% auto;
-    height: 90vh;
-    /* border: 2px solid red; */
+    display: grid;
+    grid-template-areas: 
+    "top  top top top top  top top top  "
+    "left  grid grid grid grid grid grid right"
+    "left  grid grid grid grid grid  grid right"
+    "left grid grid grid grid grid  grid right"
+    "left  grid grid grid grid grid  grid right"
+    " bot  bot bot bot bot bot bot bot"
+    ;
+
+    grid-template-columns: 0.9fr repeat(6, 1fr) 5%;
+    grid-template-rows: 12% repeat(4, 1fr) 14% ;
+
+
+
+    width: 80%;
+    margin:auto;
+    margin-top: 2%;
+    box-shadow: 10px 10px 10px;
+    height: 91vh;
+    border-radius: 7%;
+    background-color: rgb(190, 30, 30);
+    border: 10px solid rgba(0, 0, 0, 0.719);
     
 
 
    
 
 }
-.main-grid{
-    border: 2px solid red;
+.cells-grid{
+    
+    grid-area: grid;
+    border: 5px solid rgb(212, 205, 205);
     background-color: white;
     width: 100%;
-    height: 80%;
+    height: 100%;
     display: grid;
     grid-template-columns: repeat(16, 1fr);
     justify-content: center;
-    /* grid-auto-rows: 40px; */
+    box-shadow: 1px 1px 1px;
+    border-radius: 7px;
 
     
 
@@ -43,3 +67,52 @@ main{
     
 }
 
+
+.top{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.8rem !important;
+    font-family: 'Dancing Script', cursive;
+    letter-spacing: 0.3rem;
+
+    grid-area: top;
+}
+
+
+.left{
+    grid-area: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.btn{
+    font-size: 1.3rem;
+    width: 60%;
+    height: 2.4rem;
+    border-radius: 5px;
+    color: rgb(56, 54, 54);
+}
+
+
+.right{
+    grid-area: right;
+   
+}
+
+
+.bottom{
+    grid-area: bot;
+    
+}
+
+
+.section{
+    font-size: 2rem;
+    color: white;
+    
+    border-radius: 50%;
+
+}

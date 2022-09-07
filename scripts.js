@@ -2,30 +2,83 @@
 // variables
 const body = document.querySelector("body")
 const main = document.querySelector("main")
-const grid = document.querySelector(".main-grid")
+const grid = document.querySelector(".cells-grid")
+
+const customBtn = document.querySelector(".custom")
+const blackBtn = document.querySelector(".black")
+const eraserBtn = document.querySelector(".eraser")
+const clearBtn = document.querySelector(".clear")
+
+console.log(customBtn.value)
+
+let miceMode = "black"
+let cells = []
 
 
-
-
-
-
-
-
-
-
-
+//function calls
 CreateCells(16)
+hoverEffect()
 
+
+//event listeners
+blackBtn.addEventListener("click", function(){
+    miceMode = "black"
+    hoverEffect()
+})
+
+eraserBtn.addEventListener("click", function(){
+    miceMode = "white"
+    hoverEffect()
+})
+
+clearBtn.addEventListener("click", function(){
+    for (let i = 0; i < cells.length; i++){
+        cells[i].style.backgroundColor = "white"
+    }
+    
+})
+
+
+customBtn.addEventListener("click", function(){
+    miceMode = "custom"
+    hoverEffect()
+})
+
+
+
+
+
+function hoverEffect(){
+
+   for (let i = 0; i < cells.length; i++) {
+    
+    if (miceMode == "black"){
+
+        cells[i].addEventListener("mouseover",function(){cells[i].style.backgroundColor="black"})
+
+
+    }else if(miceMode == 'white'){
+        cells[i].addEventListener("mouseover",function(){cells[i].style.backgroundColor="white"})
+
+        
+     }else if (miceMode == "custom"){
+        cells[i].addEventListener("mouseover",function(){cells[i].style.backgroundColor=customBtn.value})
+
+     }
+    
+    } 
+
+
+}
 
 
 function CreateCells(size){
-    let cells = []
-
+   
+    
     cellAmount = size * size;
  
-    console.log(grid.clientHeight)
+    console.log("grid height is - " + grid.clientHeight)
     
-
 
     while (grid.firstChild) {
         grid.removeChild(grid.firstChild);
@@ -44,7 +97,7 @@ function CreateCells(size){
 
         grid.append(cells[i])
 
-        cells[i].addEventListener("mouseover",function(){cells[i].style.backgroundColor="black"})
+       
 
         
 
